@@ -1,0 +1,7 @@
+__pycache__/
+LKitchenpy/
+.vscode
+.htaccess
+.venv
+.idea
+.env
