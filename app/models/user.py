@@ -14,4 +14,6 @@ class User(Document):
     LastName = StringField(required=False)
     email = EmailField(required=True, unique=True)
     password = StringField(required=True)
+    reservations = StringField(required=False)
+    orders = StringField(required=False)
     created_at = DateTimeField(default=datetime.datetime.utcnow)
