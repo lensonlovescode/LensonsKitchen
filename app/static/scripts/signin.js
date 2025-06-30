@@ -17,7 +17,7 @@ $.ajax(
 $(".form").submit(function (e) {
   e.preventDefault();
   $.ajax({
-    url: "http://localhost:5000/api/v1/signup",
+    url: "http://localhost:5000/api/v1/signin",
     method: "POST",
     contentType: "application/json",
     data: JSON.stringify({

@@ -9,7 +9,7 @@ from mongoengine import connect
 
 app = Flask(__name__)
 app.register_blueprint(api_endpoints)
-cors = CORS(app, resources={r"/*": {"origins": "*"}})
+cors = CORS(app, supports_credentials=True, resources={r"/*": {"origins": "http://localhost:5001"}})
 
 connect('LensonsKitchen')
 

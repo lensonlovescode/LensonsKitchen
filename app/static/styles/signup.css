@@ -39,6 +39,14 @@ body {
     z-index: 9999;
 }
 
+.login-instead {
+    margin: 0;
+    padding: 0;
+    color: var(--font-color-sub);
+    font-weight: 600;
+    font-size: 17px;
+}
+
 .title {
     width: 300px;
     display: flex;
@@ -114,7 +122,7 @@ body {
 }
 
 .button-confirm {
-    margin: 30px auto 0 auto;
+    margin: 5px auto 0 auto;
     width: 120px;
     height: 40px;
     border-radius: 5px;
@@ -126,3 +134,4 @@ body {
     color: var(--font-color);
     cursor: pointer;
 }
+

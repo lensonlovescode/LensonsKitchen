@@ -23,6 +23,8 @@ def Signup():
     if not email or not password:
         return jsonify({"error": "Missing Email or Password"}), 400
 
+    email = email.strip().lower()
+
     hashedPwd = hash_pwd(password)
 
     try:

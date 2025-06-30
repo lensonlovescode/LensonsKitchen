@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lensons Kitchen | Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/home.css') }}" />
+</head>
+
+<body>
+    <header>
+        <img id="logo" src="../static/images/LensonsKitchen.png" alt="" />
+        <nav>
+            <a href="/">Main Home</a>
+            <a href="#">NSK Menus</a>
+            <a href="#">Food Menus</a>
+            <a href="#">Drinks Menus</a>
+            <a href="#">Offers</a>
+            <a href="#">Weekly Events</a>
+        </nav>
+        <img id="profile" src="{{ url_for('static', filename='images/user.png') }}" alt="User">
+        <img id="qrcode" src="{{ url_for('static', filename='images/qrcode.png') }}" alt="QRcode">
+    </header>
+
+    <main>
+        <div class="menu-grid">
+            <div class="menu-box">
+                <img src="{{ url_for('static', filename='images/FoodMenu.png') }}" alt="Food">
+                <h2>FOOD MENUS</h2>
+                <button class="button">
+                    <div><span>See Menu</span></div>
+                </button>
+            </div>
+            <div class="menu-box">
+                <img src="{{ url_for('static', filename='images/DrinksMenu.png') }}" alt="Drinks">
+                <h2>DRINKS MENUS</h2>
+                <button class="button">
+                    <div><span>See Menu</span></div>
+                </button>
+            </div>
+            <div class="menu-box">
+                <img src="{{ url_for('static', filename='images/Offers.png') }}" alt="Offers">
+                <h2>OFFERS</h2>
+                <button class="button">
+                    <div><span>See Offers</span></div>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <hr />
+        <p>Location: Mpaka Road, Westlands</p>
+        <p>&copy; 2025 Lensons Kitchen</p>
+    </footer>
+</body>
+
+</html>

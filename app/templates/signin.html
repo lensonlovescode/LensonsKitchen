@@ -12,7 +12,7 @@
 	<img id="logo" src="../static/images/LensonsKitchen.png" alt="" />
 	<!-- From Uiverse.io by andrew-demchenk0 -->
 	<form class="form">
-		<div class="title">Welcome,<br /><span>sign up to continue</span></div>
+		<div class="title">Welcome,<br /><span>sign in to continue</span></div>
 		<input type="email" placeholder="Email" name="email" class="input" />
 		<input type="password" placeholder="Password" name="password" class="input" />
 		<div class="login-with">
@@ -35,11 +35,11 @@
 				</svg>
 			</div>
 		</div>
-		<h10 class="login-instead">Have an account? <a href="http://localhost:5001/signin">Login</a></h10>
-		<button class="button-confirm">Sign up →</button>
+		<h10 class="login-instead">Don't have an account? <a href="http://localhost:5001/signup">Sign up</a></h10>
+		<button class="button-confirm">Sign in →</button>
 	</form>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="{{ url_for('static', filename='scripts/signup.js') }}"></script>
+	<script src="{{ url_for('static', filename='scripts/signin.js') }}"></script>
 </body>
 
 </html>
