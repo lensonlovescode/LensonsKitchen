@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lensons Kitchen | Reservations</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/reserve.css') }}" />
+</head>
+
+<body>
+  <header>
+    <img id="logo" src="../static/images/LensonsKitchen.png" alt="Logo" />
+    <nav>
+      <a href="/">Main Home</a>
+      <a href="#">NSK Menus</a>
+      <a href="#">Food Menus</a>
+      <a href="#">Drinks Menus</a>
+      <a href="#">Offers</a>
+      <a href="#">Weekly Events</a>
+    </nav>
+    <img id="profile" src="{{ url_for('static', filename='images/user.png') }}" alt="User">
+    <img id="qrcode" src="{{ url_for('static', filename='images/qrcode.png') }}" alt="QRcode">
+  </header>
+
+  <main>
+    <section class="reservation-section">
+      <h2>Make a Reservation</h2>
+      <form id="reservation-form">
+        <label>Reservation Time</label>
+        <input type="datetime-local" name="reservation_time" required />
+
+        <label>Party Size</label>
+        <input type="number" name="party_size" placeholder="Party Size" required />
+
+        <label>Special Request (optional)</label>
+        <input type="text" name="special_request" placeholder="Any special request?" />
+
+        <label>Contact Number</label>
+        <input type="text" name="contact" placeholder="Contact Number" required />
+
+        <button type="submit">Submit Reservation</button>
+      </form>
+
+      <button id="view-reservations-btn" class="secondary-btn">
+        View My Reservations
+      </button>
+    </section>
+  </main>
+
+  <footer>
+    <hr />
+    <p>Location: Mpaka Road, Westlands</p>
+    <p>&copy; 2025 Lensons Kitchen</p>
+  </footer>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="{{ url_for('static', filename='scripts/reserve.js') }}"></script>
+</body>
+
+
+</html>

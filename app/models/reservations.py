@@ -2,7 +2,7 @@
 """
 The reservations schema is defined in this module
 """
-from mongoengine import Document, StringField, EmailField, DateTimeField, BooleanField
+from mongoengine import Document, StringField, IntField, DateTimeField, BooleanField
 import datetime
 
 
@@ -12,8 +12,8 @@ class Reservation(Document):
     """
     owner_id = StringField(required=False)
     status = StringField(choices=['pending', 'confirmed', 'checked_in', 'cancelled', 'no_show'], default='pending')
-    created_at = DateTimeField(default=datetime.datetime.utcnow)
-    updated_at = DateTimeField(default=datetime.datetime.utcnow)
+    created_at = DateTimeField(default=datetime.datetime.utcnow())
+    updated_at = DateTimeField(default=datetime.datetime.utcnow())
     reservation_time = DateTimeField()
     party_size = IntField(required=True)
     special_request = StringField(required=False)

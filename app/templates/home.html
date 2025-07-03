@@ -17,10 +17,16 @@
             <a href="#">Food Menus</a>
             <a href="#">Drinks Menus</a>
             <a href="#">Offers</a>
-            <a href="#">Weekly Events</a>
+            <a href="#">Weekly Event</a>
+            <a href="/reserve">Reservations</a>
+
         </nav>
         <img id="profile" src="{{ url_for('static', filename='images/user.png') }}" alt="User">
         <img id="qrcode" src="{{ url_for('static', filename='images/qrcode.png') }}" alt="QRcode">
+
+        <div class="loadviews">
+
+        </div>
     </header>
 
     <main>
@@ -54,6 +60,8 @@
         <p>Location: Mpaka Road, Westlands</p>
         <p>&copy; 2025 Lensons Kitchen</p>
     </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="{{ url_for('static', filename='scripts/loadviews.js') }}"></script>
 </body>
 
 </html>

@@ -3,9 +3,12 @@
 The API for making, pdating and deleting reservations
 """
 import datetime
-from api.v1.endpoints import api_endpoints
+from api.v1 import api_endpoints
 from flask import request, jsonify
-from app.models import Reservation, Table
+from app.models.reservations import Reservation
+from app.models.user import User
+from app.models.tables import Table
+from app.utils.Auth import ValidateToken
 
 
 @api_endpoints.route('/reserve', methods=["POST"], strict_slashes=False)
@@ -13,17 +16,22 @@ def create_reservations():
     """
     Creates a reservation
     """
-    data = request.get_json()
+    token = request.cookies.get("access_token")
+    payload = ValidateToken(token)
 
-    owner_id = data.get('owner')
+    email = payload.get('email')
+    doc = User.objects(email=email).first()
+    owner_id = doc.id
     if owner_id:
         pass
     else:
         return jsonify({"error": "Missing owner"}), 400
+    
+    data = request.get_json()
 
     reservation_time = data.get('reservation_time')
     if reservation_time:
-        reservation_time = datetime.fromisoformat(reservation_time.replace("Z", "+00:00"))
+        reservation_time = datetime.datetime.fromisoformat(reservation_time.replace("Z", "+00:00"))
     else:
         return jsonify({"error": "Missing Reservation Time"}), 400
 
@@ -51,7 +59,7 @@ def create_reservations():
 
     try:
         reservation = Reservation(
-            owner_id=owner_id,
+            owner_id=str(owner_id),
             reservation_time=reservation_time,
             party_size=party_size,
             special_request=special_request,
@@ -63,7 +71,7 @@ def create_reservations():
         return jsonify({
             "message": "Reservation created successfully",
             "table_number": table_number,
-            "res_id": reservation._id
+            "res_id": str(reservation.id)
         })
     except Exception as e:
         return jsonify({"error": "Error creating your reservation"}), 500

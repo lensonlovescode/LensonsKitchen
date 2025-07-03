@@ -28,8 +28,6 @@ def Signin():
 
     if doc:
         correct = bcrypt.checkpw(password.encode(), doc.password.encode())
-
-        print (correct)
         if correct:
             token = genToken(email)
             response = make_response(jsonify({"message": "Login successfull"}))

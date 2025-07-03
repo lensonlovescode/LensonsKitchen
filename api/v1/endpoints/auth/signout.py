@@ -13,8 +13,6 @@ def Sign_out():
     """
     Logs the user out
     """
-    token = request.cookies.get("access_token")
-
     response = make_response(jsonify({"message": "Logout successfull"}))
-    response.set_cookie('access_token', None, max_age=1, httponly=True, samesite='Strict')
+    response.set_cookie('access_token', '', max_age=1, httponly=True, samesite='Strict')
     return response

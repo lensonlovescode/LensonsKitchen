@@ -9,3 +9,4 @@ app_pages = Blueprint('app_pages', __name__, url_prefix='/')
 from app.pages.signup import *
 from app.pages.home import *
 from app.pages.signin import *
+from app.pages.reserve import *
