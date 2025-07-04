@@ -11,6 +11,7 @@
 <body>
     <header>
         <img id="logo" src="../static/images/LensonsKitchen.png" alt="" />
+        <button id="burger" aria-label="Toggle navigation">&#9776;</button>
         <nav>
             <a href="/">Main Home</a>
             <a href="#">NSK Menus</a>
@@ -23,9 +24,9 @@
         </nav>
         <img id="profile" src="{{ url_for('static', filename='images/user.png') }}" alt="User">
         <img id="qrcode" src="{{ url_for('static', filename='images/qrcode.png') }}" alt="QRcode">
-
+        <div class="overlay"></div>
         <div class="loadviews">
-
+            
         </div>
     </header>
 
