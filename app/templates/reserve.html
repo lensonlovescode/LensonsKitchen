@@ -19,7 +19,7 @@
       <a href="#">Offers</a>
       <a href="#">Weekly Events</a>
     </nav>
-    <img id="profile" src="{{ url_for('static', filename='images/user.png') }}" alt="User">
+    <img onclick="takemepfp()" id="profile" src="{{ url_for('static', filename='images/user.png') }}" alt="User" />
     <img id="qrcode" src="{{ url_for('static', filename='images/qrcode.png') }}" alt="QRcode">
   </header>
 
@@ -55,6 +55,7 @@
   </footer>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="{{ url_for('static', filename='scripts/reserve.js') }}"></script>
+  <script src="{{ url_for('static', filename='scripts/viewpfp.js') }}"></script>
 </body>
 
 

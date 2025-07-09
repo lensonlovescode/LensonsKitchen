@@ -9,6 +9,8 @@ from app.models.reservations import Reservation
 from app.models.user import User
 from app.models.tables import Table
 from app.utils.Auth import ValidateToken
+from bson import ObjectId
+
 
 
 @api_endpoints.route('/reserve', methods=["POST"], strict_slashes=False)
@@ -55,7 +57,7 @@ def create_reservations():
     if doc:
         table_number = doc.table_number
     else:
-        return jsonify({"Error": "All tables have been reserved"})
+        return jsonify({"Error": "All tables have been reserved"}), 400
 
     try:
         reservation = Reservation(
@@ -80,28 +82,29 @@ def create_reservations():
 @api_endpoints.route('/delres/<res_id>', methods=['DELETE'], strict_slashes=False)
 def delete_reservation(res_id):
     """
-    Deletes a reservation
+    Deletes a reservation and frees the table
     """
-    doc = Reservation.objects(reservation_id=res_id).first()
+    doc = Reservation.objects(id=res_id).first()
+    if not doc:
+        return jsonify({"error": "Reservation does not exist"}), 404
 
-    if doc:
-        doc.delete()
-        return jsonify({"message": "Reservation deleted successfully"})
-    else:
-        return jsonify({"error": "Reservation Does not exist"}), 404
+    table = Table.objects(table_number=doc.table_number).first()
+    if table:
+        table.booked = False
+        table.save()
+
+    doc.delete()
+    return jsonify({"message": "Reservation deleted successfully"})
 
 
-@api_endpoints.route('upres/res_id', methods=['PUT'], strict_slashes=False)
+@api_endpoints.route('/upres/<res_id>', methods=['PUT'], strict_slashes=False)
 def update_reservation(res_id):
     """
     Updates a reservation, based on the reservation id
     """
     data = request.get_json()
 
-    owner_id = data.get("owner_id")
-
-    doc = Reservation.objects(reservation_id=res_id, owner_id=owner_id).first()
-
+    doc = Reservation.objects(id=res_id).first()
     if not doc:
         return jsonify({"error": "Reservation does not exist"}), 404
 
@@ -112,12 +115,21 @@ def update_reservation(res_id):
 
     for field in updatable_fields:
         if field in data:
+            if field == "reservation_time":
+                data[field] = datetime.datetime.fromisoformat(data[field])
             setattr(doc, field, data[field])
 
     doc.updated_at = datetime.datetime.utcnow()
     doc.save()
 
+    if doc.status == "checked_in":
+        table = Table.objects(table_number=doc.table_number).first()
+        if table:
+            table.booked = False
+            table.save()
+
     return jsonify({"message": "Reservation updated successfully"})
+
 
 
 @api_endpoints.route('/reservation/<res_id>')
@@ -125,7 +137,8 @@ def get_reservation(res_id):
     """
     Gets a specific reservation based on the ID
     """
-    res = Reservation.objects(_id=res_id)
+    res = Reservation.objects(id=ObjectId(res_id)).first()
+
     return jsonify({res.to_mongo().to_dict()})
     
 
@@ -141,3 +154,58 @@ def get_my_reservations(user_id):
     else:
         return jsonify({"error": "No reservations found"}), 404
 
+
+@api_endpoints.route('/allreservations')
+def get_all_reservations():
+    """
+    Gets all reservations with user info
+    """
+    res = Reservation.objects()
+    reservations = []
+
+    for r in res:
+        reservation = r.to_mongo().to_dict()
+        reservation['_id'] = str(reservation['_id'])
+
+        user = User.objects(id=reservation['owner_id']).first()
+        if user:
+            reservation['user_info'] = {
+                'email': user.email,
+                'FirstName': user.FirstName,
+                'LastName': user.LastName,
+                'status': user.status
+            }
+        else:
+            reservation['user_info'] = None
+
+        reservations.append(reservation)
+
+    return jsonify(reservations)
+
+
+@api_endpoints.route('/pendreservations')
+def get_pending_reservations():
+    """
+    Gets all pending reservations with user info
+    """
+    res = Reservation.objects(status="pending")
+    reservations = []
+
+    for r in res:
+        reservation = r.to_mongo().to_dict()
+        reservation['_id'] = str(reservation['_id'])
+
+        user = User.objects(id=reservation['owner_id']).first()
+        if user:
+            reservation['user_info'] = {
+                'email': user.email,
+                'FirstName': user.FirstName,
+                'LastName': user.LastName,
+                'status': user.status
+            }
+        else:
+            reservation['user_info'] = None
+
+        reservations.append(reservation)
+
+    return jsonify(reservations)

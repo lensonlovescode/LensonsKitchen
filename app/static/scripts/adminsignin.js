@@ -27,7 +27,6 @@ $(".form").submit(function (e) {
       withCredentials: true,
     },
     success: function (res) {
-      alert(res.message);
       window.location.href = "http://localhost:5001/admin";
       alert("Logged in as admin")
     },

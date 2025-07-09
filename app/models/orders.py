@@ -2,13 +2,13 @@
 """
 The reservations schema is defined in this module
 """
-from mongoengine import Document, StringField, EmailField, DateTimeField, BooleanField
+from mongoengine import Document, StringField, DateTimeField, BooleanField
 import datetime
 
 
-class Reservation(Document):
+class Order(Document):
     """
-    Represents a reservation, the class inherits from Document
+    Represents an order, the class inherits from Document
     """
     Owner_id = StringField(required=False)
     status = StringField(choices=['pending', 'confirmed', 'checked_in', 'cancelled', 'no_show'], default='pending')

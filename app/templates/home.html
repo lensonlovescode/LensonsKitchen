@@ -22,7 +22,7 @@
             <a href="/events">Weekly Events</a>
             <a href="/reserve">Reservations</a>
         </nav>
-        <img id="profile" src="{{ url_for('static', filename='images/user.png') }}" alt="User" />
+        <img onclick="takemepfp()" id="profile" src="{{ url_for('static', filename='images/user.png') }}" alt="User" />
         <img id="qrcode" src="{{ url_for('static', filename='images/qrcode.png') }}" alt="QRcode" />
     </header>
     <div class="overlay"></div>
@@ -79,7 +79,7 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="{{ url_for('static', filename='scripts/loadviews.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/viewpfp.js') }}"></script>
 </body>
 
 </html>
