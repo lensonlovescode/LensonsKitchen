@@ -15,14 +15,14 @@
         <img id="logo" src="../static/images/LensonsKitchen.png" alt="" />
         <button id="burger" aria-label="Toggle navigation">&#9776;</button>
         <nav>
-            <a href="/">Main Home</a>
+            <a href="/">Home</a>
             <a href="/foodmenus">Food Menus</a>
             <a href="/drinksmenus">Drinks Menus</a>
             <a href="/offers">Offers</a>
             <a href="/events">Weekly Events</a>
             <a href="/reserve">Reservations</a>
         </nav>
-        <img onclick="takemepfp()" id="profile" src="{{ url_for('static', filename='images/user.png') }}" alt="User" />
+        <img onclick="takemepfp()" id="profilePic" class="profile-img" alt="" />
         <img id="qrcode" src="{{ url_for('static', filename='images/qrcode.png') }}" alt="QRcode" />
     </header>
     <div class="overlay"></div>
@@ -79,7 +79,7 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="{{ url_for('static', filename='scripts/viewpfp.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/loadviews.js') }}"></script>
 </body>
 
 </html>

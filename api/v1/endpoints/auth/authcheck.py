@@ -28,6 +28,7 @@ def CheckLogin():
     payload['LastName'] = str(user.LastName)
     payload['LegacyPoints'] = str(user.legacypoints)
     payload['status'] = str(user.status)
+    payload['image_url'] = str(user.image_url)
 
     if payload:
         return jsonify({"message": "Logged in", "data": payload})
@@ -56,5 +57,6 @@ def CheckLoginAdmin():
     payload['LastName'] = str(user.LastName)
     payload['LegacyPoints'] = str(user.legacypoints)
     payload['status'] = str(user.status)
+    payload['image_url'] = str(user.image_url)
 
     return jsonify({"message": "Logged in", "data": payload})

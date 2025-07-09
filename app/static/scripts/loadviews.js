@@ -9,40 +9,22 @@ $(document).ready(function () {
       withCredentials: true,
     },
     success: function (res) {
-      processViews(res.data);
+      const data = res.data;
       $("footer").append(
         '<button id="logout" onclick="logout()">logout</button>'
       );
+      if (data.image_url) {
+        $("#profilePic").attr("src", data.image_url);
+      }
     },
     error: function () {
-      UnprocessViews();
       $("footer").append(
         '<a  href="http://localhost:5001/signin"> <button id="signin_after">sign in</button> <a>'
       );
+      $("#profilePic").attr("onclick", "takemesignin()");
     },
   });
 });
-
-function processViews(data) {
-	console.log(data);
-	const fullName = `${data.FirstName} ${data.LastName}`;
-	const userCard = `
-		<div class="user-card">
-			<img src="{{ url_for('static', filename='images/user.png') }}" alt="User">
-			<h3>${fullName}</h3>
-			<p>ID: ${data.id}</p>
-			<p>Email: ${data.email}</p>
-			<p>Status: ${data.status}</p>
-			<p>Legacy Points: ${data.LegacyPoints}</p>
-		</div>
-	`;
-	$('.loadviews').html(userCard);
-}
-
-function UnprocessViews() {
-    $('.loadviews').html('<a  href="http://localhost:5001/signin"> <button id="signin_after">sign in</button> <a>')
-}
-
 
 function logout() {
   $.ajax({
@@ -58,23 +40,21 @@ function logout() {
         '<a href="http://localhost:5001/signin"> <button id="signin_after">sign in</button> <a>'
       );
       $('.loadviews').html('<a href="http://localhost:5001/signin"> <button id="signin_after">sign in</button> <a>')
-
+      $("#profilePic").attr("src", "");
+      $("#profilePic").attr("onclick", "takemesignin()");
     },
     error: function (error) {
       console.log(error);
     },
   });
 }
-$('#profile').click(function (e) {
-	e.stopPropagation();
-	$('.overlay, .loadviews').show();
-});
 
-$('.overlay').click(function () {
-	$('.overlay, .loadviews').hide();
-});
 
-$('.loadviews').click(function (e) {
-	e.stopPropagation();
-});
+function takemepfp() {
+    window.location = "/profile"
+}
+
+function takemesignin() {
+    window.location = "/signin"
+}
 

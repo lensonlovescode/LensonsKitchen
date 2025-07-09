@@ -149,10 +149,19 @@ def get_my_reservations(user_id):
     """
     res_list = Reservation.objects(owner_id=user_id)
 
-    if res_list:
-        return jsonify([r.to_mongo().to_dict() for r in res_list])
+    reservations = []
+    for r in res_list:
+        res_dict = r.to_mongo().to_dict()
+        res_dict['_id'] = str(res_dict['_id'])
+        if 'order_id' in res_dict:
+            res_dict['order_id'] = str(res_dict['order_id'])
+        reservations.append(res_dict)
+
+    if reservations:
+        return jsonify(reservations)
     else:
         return jsonify({"error": "No reservations found"}), 404
+
 
 
 @api_endpoints.route('/allreservations')

@@ -24,7 +24,16 @@ header {
 header #profile {
     height: 45px;
     width: 45px;
+
+}
+
+.profile-img {
+    height: 45px;
     margin: 2%;
+    width: 45px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid white;
 }
 
 header #qrcode {

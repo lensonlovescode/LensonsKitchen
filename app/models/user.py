@@ -18,3 +18,4 @@ class User(Document):
     status = StringField(choices=['Bronze', 'Gold', 'Diamond', 'Platnum'], default='Bronze')
     created_at = DateTimeField(default=datetime.datetime.utcnow)
     admin = BooleanField(default=False)
+    image_url = StringField(default="{{ url_for('static', filename='images/user.png') }}")

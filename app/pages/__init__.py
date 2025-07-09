@@ -11,3 +11,4 @@ from app.pages.home import *
 from app.pages.signin import *
 from app.pages.reserve import *
 from app.pages.admin import *
+from app.pages.profile import *

@@ -12,3 +12,4 @@ from api.v1.endpoints.auth.authcheck import *
 from api.v1.endpoints.auth.signin import *
 from api.v1.endpoints.auth.signout import *
 from api.v1.endpoints.reservations import *
+from api.v1.endpoints.user.user import *

@@ -12,14 +12,15 @@
   <header>
     <img id="logo" src="../static/images/LensonsKitchen.png" alt="Logo" />
     <nav>
-      <a href="/">Main Home</a>
-      <a href="#">NSK Menus</a>
+      <a href="/">Home</a>
+      <a href="#">Menus</a>
       <a href="#">Food Menus</a>
       <a href="#">Drinks Menus</a>
       <a href="#">Offers</a>
       <a href="#">Weekly Events</a>
     </nav>
-    <img onclick="takemepfp()" id="profile" src="{{ url_for('static', filename='images/user.png') }}" alt="User" />
+    <img onclick="takemepfp()" class="profile-img" id="profilePic"
+      src="{{ url_for('static', filename='images/user.png') }}" alt="User" />
     <img id="qrcode" src="{{ url_for('static', filename='images/qrcode.png') }}" alt="QRcode">
   </header>
 
@@ -41,10 +42,13 @@
 
         <button type="submit">Submit Reservation</button>
       </form>
+      <a href="/profile">
+        <button id="view-reservations-btn" class="secondary-btn">
+          View My Reservations
+        </button>
+      </a>
 
-      <button id="view-reservations-btn" class="secondary-btn">
-        View My Reservations
-      </button>
+
     </section>
   </main>
 
@@ -55,7 +59,6 @@
   </footer>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="{{ url_for('static', filename='scripts/reserve.js') }}"></script>
-  <script src="{{ url_for('static', filename='scripts/viewpfp.js') }}"></script>
 </body>
 
 
