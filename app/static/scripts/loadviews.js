@@ -15,6 +15,7 @@ $(document).ready(function () {
       );
     },
     error: function () {
+      UnprocessViews();
       $("footer").append(
         '<a  href="http://localhost:5001/signin"> <button id="signin_after">sign in</button> <a>'
       );
@@ -27,7 +28,7 @@ function processViews(data) {
 	const fullName = `${data.FirstName} ${data.LastName}`;
 	const userCard = `
 		<div class="user-card">
-			<img src="${data.image_url}" alt="User Profile">
+			<img src="{{ url_for('static', filename='images/user.png') }}" alt="User">
 			<h3>${fullName}</h3>
 			<p>ID: ${data.id}</p>
 			<p>Email: ${data.email}</p>
@@ -36,6 +37,10 @@ function processViews(data) {
 		</div>
 	`;
 	$('.loadviews').html(userCard);
+}
+
+function UnprocessViews() {
+    $('.loadviews').html('<a  href="http://localhost:5001/signin"> <button id="signin_after">sign in</button> <a>')
 }
 
 
@@ -52,6 +57,8 @@ function logout() {
       $("footer").append(
         '<a href="http://localhost:5001/signin"> <button id="signin_after">sign in</button> <a>'
       );
+      $('.loadviews').html('<a href="http://localhost:5001/signin"> <button id="signin_after">sign in</button> <a>')
+
     },
     error: function (error) {
       console.log(error);
@@ -67,7 +74,7 @@ $('.overlay').click(function () {
 	$('.overlay, .loadviews').hide();
 });
 
-// Prevent clicks inside the card from closing it:
 $('.loadviews').click(function (e) {
 	e.stopPropagation();
 });
+

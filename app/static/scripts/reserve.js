@@ -38,14 +38,14 @@ $(document).ready(function () {
         alert(response.message || response.error);
         form[0].reset();
       },
-      error: function () {
-        alert("Something went wrong. Please try again.");
+      error: function (err) {
+        alert(err.responseJSON.Error);
       }
     });
   });
 
   $("#view-reservations-btn").on("click", function () {
-    window.location.href = "/my-reservations";  // Adjust this route if needed
+    window.location.href = "/my-reservations";
   });
 });
 

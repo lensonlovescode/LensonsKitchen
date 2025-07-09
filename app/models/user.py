@@ -2,7 +2,7 @@
 """
 The user schema is defined in this module
 """
-from mongoengine import Document, StringField, EmailField, DateTimeField, IntField
+from mongoengine import Document, StringField, EmailField, DateTimeField, IntField, BooleanField
 import datetime
 
 
@@ -17,3 +17,4 @@ class User(Document):
     legacypoints = IntField(default=0)
     status = StringField(choices=['Bronze', 'Gold', 'Diamond', 'Platnum'], default='Bronze')
     created_at = DateTimeField(default=datetime.datetime.utcnow)
+    admin = BooleanField(default=False)

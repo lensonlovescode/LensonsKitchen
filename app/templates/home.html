@@ -5,6 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lensons Kitchen | Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/home.css') }}" />
 </head>
 
@@ -14,44 +16,56 @@
         <button id="burger" aria-label="Toggle navigation">&#9776;</button>
         <nav>
             <a href="/">Main Home</a>
-            <a href="#">NSK Menus</a>
-            <a href="#">Food Menus</a>
-            <a href="#">Drinks Menus</a>
-            <a href="#">Offers</a>
-            <a href="#">Weekly Event</a>
+            <a href="/foodmenus">Food Menus</a>
+            <a href="/drinksmenus">Drinks Menus</a>
+            <a href="/offers">Offers</a>
+            <a href="/events">Weekly Events</a>
             <a href="/reserve">Reservations</a>
-
         </nav>
-        <img id="profile" src="{{ url_for('static', filename='images/user.png') }}" alt="User">
-        <img id="qrcode" src="{{ url_for('static', filename='images/qrcode.png') }}" alt="QRcode">
-        <div class="overlay"></div>
-        <div class="loadviews">
-            
-        </div>
+        <img id="profile" src="{{ url_for('static', filename='images/user.png') }}" alt="User" />
+        <img id="qrcode" src="{{ url_for('static', filename='images/qrcode.png') }}" alt="QRcode" />
     </header>
+    <div class="overlay"></div>
+    <div class="loadviews"></div>
 
-    <main>
-        <div class="menu-grid">
-            <div class="menu-box">
-                <img src="{{ url_for('static', filename='images/FoodMenu.png') }}" alt="Food">
-                <h2>FOOD MENUS</h2>
-                <button class="button">
-                    <div><span>See Menu</span></div>
-                </button>
+    <main class="container my-5">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
+            <div class="col">
+                <div class="card menu-box text-center h-100">
+                    <img src="{{ url_for('static', filename='images/FoodMenu.png') }}" alt="Food" />
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <h2 class="card-title">FOOD MENUS</h2>
+                        <a href="/foodmenus">
+                            <button>
+                                <span>See Menu</span>
+                            </button></a>
+                    </div>
+                </div>
             </div>
-            <div class="menu-box">
-                <img src="{{ url_for('static', filename='images/DrinksMenu.png') }}" alt="Drinks">
-                <h2>DRINKS MENUS</h2>
-                <button class="button">
-                    <div><span>See Menu</span></div>
-                </button>
+            <div class="col">
+                <div class="card menu-box text-center h-100">
+                    <img src="{{ url_for('static', filename='images/DrinksMenu.png') }}" alt="Drinks" />
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <h2 class="card-title">DRINKS MENUS</h2>
+                        <a href="/drinksmenu">
+                            <button>
+                                <span>See Menu</span>
+                            </button></a>
+                    </div>
+                </div>
             </div>
-            <div class="menu-box">
-                <img src="{{ url_for('static', filename='images/Offers.png') }}" alt="Offers">
-                <h2>OFFERS</h2>
-                <button class="button">
-                    <div><span>See Offers</span></div>
-                </button>
+            <div class="col">
+                <div class="card menu-box text-center h-100">
+                    <img src="{{ url_for('static', filename='images/Offers.png') }}" class="card-img-top mx-auto mt-3"
+                        alt="Offers" />
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <h2 class="card-title">OFFERS</h2>
+                        <a href="/offers">
+                            <button>
+                                <span>See Offers</span>
+                            </button></a>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
@@ -61,8 +75,11 @@
         <p>Location: Mpaka Road, Westlands</p>
         <p>&copy; 2025 Lensons Kitchen</p>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="{{ url_for('static', filename='scripts/loadviews.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/loadviews.js') }}"></script>
 </body>
 
 </html>
