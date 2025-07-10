@@ -14,7 +14,7 @@ It also features a dynamic admin dash for creation, deletion, update of reservat
 |-------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 💻 Languages      | Python, HTML5/CSS3, JavaScript                                                                                                                               |
 | 🧰 Frameworks     | Flask, Bootstrap                                                                                                                                             |
-| 🧰 Tools & Libraries | MongoEngine (ODM for MongoDB), bcrypt (password hashing), PyJWT (JWT authentication),  Jinja2 (HTML templating)                                           |
+| 🧰 Tools & Libraries | MongoEngine (ODM for MongoDB), bcrypt (password hashing), PyJWT (JWT authentication),  Jinja2 (HTML templating), jquery                                   |
 | 🛢️ Database       | MongoDB (NoSQL document store)                                                                                                                               |
 
 
