@@ -50,7 +50,7 @@ $(document).ready(function () {
         form[0].reset();
       },
       error: function (err) {
-        alert(err.responseJSON.Error);
+        alert(err.responseJSON.error);
       },
     });
   });

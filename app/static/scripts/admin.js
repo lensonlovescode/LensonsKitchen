@@ -7,6 +7,7 @@ $.ajax({
 })
   .done(function (data) {
     if (data.message == "Logged in") {
+      $("body").show();
     }
   })
   .fail(function (error) {
