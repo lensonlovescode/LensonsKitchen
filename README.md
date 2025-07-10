@@ -23,7 +23,7 @@ It also features a dynamic admin dash for creation, deletion, update of reservat
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/LensonsKitchen.git
+git clone https://github.com/lensonlovescode/LensonsKitchen.git
 cd LensonsKitchen
 
 # Create and activate virtual environment
