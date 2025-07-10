@@ -22,8 +22,8 @@ def create_reservations():
     payload = ValidateToken(token)
 
     email = payload.get('email')
-    doc = User.objects(email=email).first()
-    owner_id = doc.id
+    user = User.objects(email=email).first()
+    owner_id = user.id
     if owner_id:
         pass
     else:
@@ -70,6 +70,9 @@ def create_reservations():
         )
         reservation.save()
         doc.update(booked=True)
+        user.legacypoints += 10
+        user.save()
+
         return jsonify({
             "message": "Reservation created successfully",
             "table_number": table_number,

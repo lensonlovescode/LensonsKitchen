@@ -97,9 +97,9 @@ function renderReservations(user_id) {
                 <strong>Status:</strong> ${res.status}<br>
                 <strong>Party Size:</strong> ${res.party_size}<br>
                 <strong>Special Request:</strong> ${res.special_request || "N/A"}<br>
-                <button class="btn btn-primary btn-sm mt-2 update-res-btn">Update</button>
+                <button class="btn btn-primary btn-sm mt-2 update-res-btn" data-resid="${res._id}">Update</button>
                 <button class="btn btn-danger btn-sm mt-2 delete-btn" data-resid="${res._id}">Delete</button>
-                <button class="btn btn-success btn-sm mt-2 update-res-btn">Add order +</button>
+                <button class="btn btn-success btn-sm mt-2 update-res-btn" data-resid="${res._id}">Add order +</button>
             </li>
             `;
         list.append(item);
@@ -131,3 +131,42 @@ $(document).on("click", ".delete-btn", function () {
     });
   }
 });
+
+$(document).on("click", ".update-btn", function () {
+	const row = $(this).closest("li");
+	const resId = row.find("strong:first").next().text();
+	const time = row.find("strong:contains('Time:')").next().text();
+	const partySize = row.find("strong:contains('Party Size:')").next().text();
+
+	$("#updateResId").val(resId.trim());
+	$("#updateResTime").val(time.trim());
+	$("#updatePartySize").val(partySize.trim());
+
+	$("#updateReservationModal").modal("show");
+});
+
+$("#updateReservationForm").submit(function (e) {
+	e.preventDefault();
+
+	const updatedData = {
+		reservation_time: $("#updateResTime").val(),
+		party_size: $("#updatePartySize").val(),
+	};
+
+	const resId = $("#updateResId").val();
+
+	$.ajax({
+		url: `http://localhost:5000/api/v1/upres/${resId}`,
+		type: "PUT",
+		contentType: "application/json",
+		data: JSON.stringify(updatedData),
+		success: function (response) {
+			alert(response.message);
+			location.reload();
+		},
+		error: function () {
+			alert("Failed to update reservation.");
+		},
+	});
+});
+
